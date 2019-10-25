@@ -19,20 +19,16 @@
                     <v-toolbar-title>{{pageTitle}}</v-toolbar-title>
 
                     <v-spacer></v-spacer>
-                    <v-btn icon>
-                        <v-icon>mdi-magnify</v-icon>
-                    </v-btn>
-                    <!-- Lichtschalter 
+  
                     <v-tooltip left>
                         <template v-slot:activator="{ on }">
-                            <v-btn icon @click="this.vuetify.theme.dark = !this.vuetify.theme.dark">
-                                <v-icon v-if="this.vuetify.theme.dark">mdi-lightbulb-off</v-icon>
+                            <v-btn icon @click="this.$vuetify.theme.dark = !this.$vuetify.theme.dark">
+                                <v-icon v-if="this.$vuetify.theme.dark">mdi-lightbulb-off</v-icon>
                                 <v-icon v-else>mdi-lightbulb-on</v-icon>
                             </v-btn>
                         </template>
-                        <span>Licht {{this.vuetify.theme.dark ? 'ausschalten' : 'anschalten'}}</span>
+                        <span>Licht {{this.$vuetify.theme.dark ? 'ausschalten' : 'anschalten'}}</span>
                     </v-tooltip>
-                -->
                     <v-menu left bottom>
                         <template v-slot:activator="{ on }">
                             <v-btn icon v-on="on">
@@ -55,10 +51,10 @@
             <!-- END NAVBAR-->
             <v-content>
                 <!-- HEADER IMAGE (PRALLAX EFFECT)-->
-                <v-parallax dark src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg" height="1000">
+                <v-parallax dark src="https://cdn.vuetifyjs.com/images/parallax/material2.jpg" height="1000">
                     <v-row align="center" justify="center">
                         <v-col class="text-center" cols="12">
-                            <h1 class="display-1 font-weight-thin mb-4">{{pageTitle}}</h1>
+                            <h1 class="display-4 font-weight-bold mb-4">{{pageTitle}}</h1>
                             <h4 class="subheading">Build your application today!</h4>
                         </v-col>
                     </v-row>
@@ -164,9 +160,8 @@
                 </v-container>
                 <v-container fluid>
                     <v-row>
-                        <v-col v-for="n in 8" :key="n" cols="sm">
-                            <v-img src="https://picsum.photos/id/11/150/150" lazy-src="https://picsum.photos/id/11/10/6"
-                                aspect-ratio="1" class="grey lighten-2" max-width="150" max-height="150"></v-img>
+                        <v-col v-for="n in sponsors" :key="n" cols="sm">
+                            <v-img :alt="n.name" :src="n.logo" :href="n.link" aspect-ratio="1" class="grey lighten-2" max-width="150" max-height="150"></v-img>
                         </v-col>
                     </v-row>
                 </v-container>
@@ -202,10 +197,16 @@
             }),
             data: {
                 pageTitle: "tinkerfestival 2019",
+                
                 showLoveAt: {
                     1: { name: "Facebook", icon: 'mdi-facebook', link: "https://fb.me" },
                     2: { name: "Instagram", icon: 'mdi-instagram', link: "https://instagr.am" },
                     3: { name: "twitter", icon: 'mdi-twitter', link: "https://twitter.de" }
+                },
+
+                sponsors: {
+                    1: { name: "", logo: "https://picsum.photos/id/11/150/150", link: "https://marcfischer.org"},
+                    //: { name: "", logo: "", link: ""},    // Schema
                 },
 
                 loremIpsum: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
