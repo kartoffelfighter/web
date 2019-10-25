@@ -96,8 +96,31 @@
                 <v-parallax dark src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg" height="400">
                     <v-row align="center" justify="center">
                         <v-col class="mx-auto text-center" cols="6">
-                            <v-btn>Irgendein Knopf</v-btn>
-                            <h4 class="subheading">baschd scho so.</h4>
+                            <v-dialog v-model="signUpDialog" persistent width="600px" height="90%">
+                                <template v-slot:activator="{ on }">
+                                    <v-btn color="success" dark v-on="on" x-large>
+                                        <v-icon left>mdi-human-greeting</v-icon>
+                                        Bin dabei!
+                                    </v-btn>
+                                </template>
+                                <v-card>
+                                    <v-card-title>
+                                        <v-spacer></v-spacer>
+                                        <v-btn text @click="signUpDialog = false">
+                                            <v-icon>mdi-close</v-icon>
+                                        </v-btn>
+                                    </v-card-title>
+                                    <v-card-text>
+                                        <v-container>
+                                            <iframe
+                                                :src="'https://docs.google.com/forms/d/e/' + signUpForm + '/viewform?embedded=true'"
+                                                width="100%" height="900px">Wird geladen…</iframe>
+                                        </v-container>
+                                    </v-card-text>
+
+                                </v-card>
+                            </v-dialog>
+                            <h4 class="subheading">Na los, komm schon!</h4>
                         </v-col>
                     </v-row>
                 </v-parallax>
@@ -157,13 +180,7 @@
                     </v-card-text>
 
                     <v-card-text class="grey--text pt-0 mx-auto" cols="md">
-                        Phasellus feugiat arcu sapien, et iaculis ipsum elementum sit amet. Mauris cursus commodo
-                        interdum. Praesent ut risus eget metus luctus accumsan id ultrices nunc. Sed at orci sed
-                        massa
-                        consectetur dignissim a sit amet dui. Duis commodo vitae velit et faucibus. Morbi vehicula
-                        lacinia malesuada. Nulla placerat augue vel ipsum ultrices, cursus iaculis dui sollicitudin.
-                        Vestibulum eu ipsum vel diam elementum tempor vel ut orci. Orci varius natoque penatibus et
-                        magnis dis parturient montes, nascetur ridiculus mus.
+                        {{loremIpsum}}
                     </v-card-text>
 
                     <v-divider></v-divider>
@@ -180,7 +197,7 @@
             el: '#app',
             vuetify: new Vuetify({
                 theme: {
-                    dark: false,
+                    dark: true,
                 }
             }),
             data: {
@@ -192,6 +209,9 @@
                 },
 
                 loremIpsum: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
+                signUpForm: "1FAIpQLScA0dGYLIS5WV0sVbh1tXQFnug-BnDESKDEeZpdUjDTPqdZLA",
+                signUpDialog: false,
+
 
             },
             computed: {
