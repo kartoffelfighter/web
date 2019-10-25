@@ -5,7 +5,11 @@ just clone/fork this repo, enable github pages for the forked repo and go ahead.
 
 ## modifying 
 tinkerfestival-web uses vuetifyjs (also vue.js) for content delivery. 
-Please have a look at [https://vuetifyjs.com/en/getting-started/quick-start] for additional details on theming with vuetify, for general porpuse just look up the vue.js documentation at [https://vuejs.org/v2/api/].
+Please have a look at (https://vuetifyjs.com/en/getting-started/quick-start)[vuetify] for additional details on theming with vuetify, for general porpuse just look up the vue.js documentation at (https://vuejs.org/v2/api/)[vue.js].
+
+## Icons:
+(https://materialdesignicons.com/)
+
 
 ## Add right forms id:
 Create a google form, click send and copy the embedded form, i.e.
