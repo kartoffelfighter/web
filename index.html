@@ -2,69 +2,58 @@
 <html>
 
 <head>
-    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+    <!-- icon font -->
     <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+    <!-- vuetify material design -->
+    <link href="./vuetify.css" rel="stylesheet">
+
+    <!-- custom fonts -->
+    <link rel="stylesheet" href="https://use.typekit.net/xjp7lfb.css">
+
+    <!-- custom style -->
+    <link rel="stylesheet" href="./tinker.css">
+
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=no, minimal-ui">
 </head>
 
-<body>
+<body class="tinker-body">
     <div id="app">
-        <v-app id="main" :style="{background: $vuetify.theme.themes[theme].background}">
-            <!-- NAVBAR -->
-            <div>
-                <v-app-bar>
-                    <v-app-bar-nav-icon></v-app-bar-nav-icon>
+        <!-- NAVBAR -->
+        <v-app-bar app dense hide-on-scroll elevate-on-scroll>
 
-                    <v-toolbar-title>{{pageTitle}}</v-toolbar-title>
+            <v-toolbar-title>{{pageTitle}}</v-toolbar-title>
 
-                    <v-spacer></v-spacer>
-  
-                    <v-tooltip left>
-                        <template v-slot:activator="{ on }">
-                            <v-btn icon @click="this.$vuetify.theme.dark = !this.$vuetify.theme.dark">
-                                <v-icon v-if="this.$vuetify.theme.dark">mdi-lightbulb-off</v-icon>
-                                <v-icon v-else>mdi-lightbulb-on</v-icon>
-                            </v-btn>
-                        </template>
-                        <span>Licht {{this.$vuetify.theme.dark ? 'ausschalten' : 'anschalten'}}</span>
-                    </v-tooltip>
-                    <v-menu left bottom>
-                        <template v-slot:activator="{ on }">
-                            <v-btn icon v-on="on">
-                                <v-icon>mdi-heart</v-icon>
-                            </v-btn>
-                        </template>
+            <v-spacer></v-spacer>
 
-                        <v-list>
-                            <v-list-item v-for="item, id in showLoveAt" :key="item.id">
-                                <v-list-item-title>
-                                    <v-btn block :href="item.link">
-                                        <v-icon left>{{item.icon}}</v-icon>{{item.name}}
-                                    </v-btn>
-                                </v-list-item-title>
-                            </v-list-item>
-                        </v-list>
-                    </v-menu>
-                </v-app-bar>
-            </div>
-            <!-- END NAVBAR-->
-            <v-content>
-                <!-- HEADER IMAGE (PRALLAX EFFECT)-->
+            <v-toolbar-items>
+                <v-btn v-for="item in navigation" :key="item.title" text
+                    @click="$vuetify.goTo(item.target, scrollOptions)">{{item.title}}</v-btn>
+            </v-toolbar-items>
+
+        </v-app-bar>
+        <!-- END NAVBAR-->
+        <v-app id="main">
+            <v-content id="content">
+                <!-- SPLASH IMAGE (PRALLAX EFFECT)-->
                 <v-parallax dark src="https://cdn.vuetifyjs.com/images/parallax/material2.jpg" height="1000">
                     <v-row align="center" justify="center">
                         <v-col class="text-center" cols="12">
-                            <h1 class="display-4 font-weight-bold mb-4">{{pageTitle}}</h1>
-                            <h4 class="subheading">Build your application today!</h4>
+                            <h1 class="display-4 tinker-splash-text ">{{pageTitle}}</h1>
+                            <h4 class="display-3 tinker-splash-text ">{{subheading}}</h4>
+                            <br />
+                            <v-btn class="grey lighten-5 display-1" v-on="on" x-large>
+                                <v-icon left>mdi-human-greeting</v-icon>
+                                Bin dabei!
+                            </v-btn>
                         </v-col>
                     </v-row>
                 </v-parallax>
-                <!-- END HEADER IMAGE-->
+                <!-- END SPLASH IMAGE-->
                 <!-- PRIMARY-CARD HEADLINE -->
                 <v-container fluid>
                     <v-card class="mx-auto" max-width="800" flat>
-                        <v-card-title>
-                            <p class="display-4" align="center">Lorem Ipsum!</p>
+                        <v-card-title id="lorem-ipsum-1">
+                            <p class="display-4" align="center">Lorem Ipsum 1</p>
                         </v-card-title>
                         <v-card-text>
                             <p>
@@ -74,8 +63,27 @@
                     </v-card>
                 </v-container>
                 <!-- END PRIMARY-CARD-->
-                <!-- CARD-ROW -->
+                <!-- PRIMARY-CARD HEADLINE -->
+                <v-container fluid>
+                    <v-card class="mx-auto" max-width="800" flat>
+                        <v-card-title id="lorem-ipsum-2">
+                            <p class="display-4" align="center">Lorem Ipsum 2</p>
+                        </v-card-title>
+                        <v-card-text>
+                            <p>
+                                {{loremIpsum}}
+                            </p>
+                        </v-card-text>
+                    </v-card>
+                </v-container>
+                <!-- END PRIMARY-CARD-->
+                <!-- CARD-ROW FAQ-->
                 <v-container>
+                    <v-card class="mx-auto" max-width="800" flat>
+                        <v-card-title id="faq">
+                            <p class="display-4" align="center">FAQ</p>
+                        </v-card-title>
+                    </v-card>
                     <v-row>
                         <v-col v-for="n in 3" :key="n" cols="sm">
                             <v-card class="pa-2" outlined tile flat>
@@ -86,6 +94,13 @@
                             </v-card>
                         </v-col>
                     </v-row>
+                </v-container>
+                <v-container>
+                    <v-card class="mx-auto" max-width="800" flat>
+                        <v-card-title id="faq">
+                            <p class="display-2" align="center">Noch Fragen?</p>
+                        </v-card-title>
+                    </v-card>
                 </v-container>
                 <!-- END CARD-ROW -->
                 <!-- IMAGE-MID -->
@@ -124,11 +139,23 @@
                 <!-- IMAGE-ROW -->
                 <v-container>
                     <v-row>
-                        <v-col v-for="n in 6" :key="n" cols="sm">
-                            <v-card class="pa-2" outlined tile flat>
-                                <v-card-text>
-                                    Bild {{n}}
+                        <v-col v-for="n in sponsors" :key="n" cols="sm">
+                            <v-card class="mx-auto" max-width="400">
+                                <v-img class="white--text align-end" height="200px" :src="n.logo">
+                                    <v-card-title>{{n.name}}</v-card-title>
+                                </v-img>
+
+                                <v-card-subtitle class="pb-0">Sponsor</v-card-subtitle>
+
+                                <v-card-text class="text--primary">
+                                    <div>{{n.description}}</div>
                                 </v-card-text>
+
+                                <v-card-actions>
+                                    <v-btn color="orange" text :href="n.link">
+                                        Mehr Informationen
+                                    </v-btn>
+                                </v-card-actions>
                             </v-card>
                         </v-col>
                     </v-row>
@@ -139,48 +166,24 @@
                     <v-row>
                         <v-col cols="md">
                             <div class="mx-auto" align="center">
-                                <h4>Zentrierter Text unterhalb der Bilder</h4>
-                                {{loremIpsum}}
+                                <p>Zentrierter Text unterhalb der Bilder</p>
+                                <div class="overline font-weight-light">
+                                    Licensed by CC0 <v-icon>mdi-creative-commons</v-icon>
+                                    {{ new Date().getFullYear() }}
+                                </div>
                             </div>
                         </v-col>
                     </v-row>
                 </v-container>
                 <!-- END SUB-TEXT -->
-                <!-- SPONSORS -->
-                <v-container>
-                    <v-row>
-                        <v-col cols="sm">
-                            <div class="mx-auto" align="center">
-                                <h2>
-                                    Great <v-icon>mdi-heart</v-icon> for our friends, suppliers and backers
-                                </h2>
-                            </div>
-                        </v-col>
-                    </v-row>
-                </v-container>
-                <v-container fluid>
-                    <v-row>
-                        <v-col v-for="n in sponsors" :key="n" cols="sm">
-                            <v-img :alt="n.name" :src="n.logo" :href="n.link" aspect-ratio="1" class="grey lighten-2" max-width="150" max-height="150"></v-img>
-                        </v-col>
-                    </v-row>
-                </v-container>
             </v-content>
             <v-footer padless>
-                <v-card flat tile class="text-center">
-                    <v-card-text>
-                        <v-btn v-for="icon in 7" :key="icon" class="mx-4 grey--text" icon>
-                            <v-icon size="24px">{{ icon }}</v-icon>
-                        </v-btn>
-                    </v-card-text>
-
-                    <v-card-text class="grey--text pt-0 mx-auto" cols="md">
-                        {{loremIpsum}}
-                    </v-card-text>
-
-                    <v-divider></v-divider>
-                    <div>Licensed under CC0 <v-icon>mdi-creative-commons</v-icon> {{ new Date().getFullYear() }}
-                    </div>
+                <v-bottom-navigation v-model="bottomNav">
+                    <v-btn v-for="item, id in showLoveAt" :key="item.id" :href="item.link">
+                        <span>{{item.name}}</span>
+                        <v-icon>{{item.icon}}</v-icon>
+                    </v-btn>
+                </v-bottom-navigation>
             </v-footer>
         </v-app>
     </div>
@@ -192,34 +195,47 @@
             el: '#app',
             vuetify: new Vuetify({
                 theme: {
-                    dark: true,
+                    dark: false,
                 }
             }),
             data: {
                 pageTitle: "tinkerfestival 2019",
-                
-                showLoveAt: {
-                    1: { name: "Facebook", icon: 'mdi-facebook', link: "https://fb.me" },
-                    2: { name: "Instagram", icon: 'mdi-instagram', link: "https://instagr.am" },
-                    3: { name: "twitter", icon: 'mdi-twitter', link: "https://twitter.de" }
-                },
+                subheading: "30.11. - 01.12.",
 
-                sponsors: {
-                    1: { name: "", logo: "https://picsum.photos/id/11/150/150", link: "https://marcfischer.org"},
+                showLoveAt: [
+                    { name: "Facebook", icon: 'mdi-facebook', link: "https://fb.me" },
+                    { name: "Instagram", icon: 'mdi-instagram', link: "https://instagr.am" },
+                    { name: "twitter", icon: 'mdi-twitter', link: "https://twitter.de" }
+                ],
+
+                navigation: [
+                    { title: "Lorem-Ipsum-1", target: "#lorem-ipsum-1" },
+                    { title: "Lorem-Ipsum-2", target: "#lorem-ipsum-2" },
+                ],
+
+                sponsors: [{ name: "prezelpriter", logo: "https://picsum.photos/id/11/150/150", link: "https://marcfischer.org", description: "Sponsor für 3D-Drucke, Domain und Frontendentwicklung" },
                     //: { name: "", logo: "", link: ""},    // Schema
-                },
+                ],
 
                 loremIpsum: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
                 signUpForm: "1FAIpQLScA0dGYLIS5WV0sVbh1tXQFnug-BnDESKDEeZpdUjDTPqdZLA",
                 signUpDialog: false,
 
+                scrollOptions: {
+                    duration: 300,
+                    easing: 'easeInOutCubic',
+                    offset: 100
+                },
 
             },
             computed: {
                 theme() {
                     return (this.$vuetify.theme.dark) ? 'dark' : 'light'
                 }
-            }
+            },
+            watch: {
+
+            },
         })
     </script>
 </body>
