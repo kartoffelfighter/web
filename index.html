@@ -35,7 +35,7 @@
         <v-app id="main">
             <v-content id="content">
                 <!-- SPLASH IMAGE (PRALLAX EFFECT)-->
-                <v-parallax dark src="https://cdn.vuetifyjs.com/images/parallax/material2.jpg" height="1000">
+                <v-parallax dark :src="bgimage" height="1000">
                     <v-row align="center" justify="center">
                         <v-col class="text-center" cols="12">
                             <h1 class="display-4 tinker-splash-text ">{{pageTitle}}</h1>
@@ -53,7 +53,7 @@
                 <v-container fluid>
                     <v-card class="mx-auto" max-width="800" flat>
                         <v-card-title id="lorem-ipsum-1">
-                            <p class="display-4" align="center">Lorem Ipsum 1</p>
+                            <p class="display-3" align="center">Lorem Ipsum 1</p>
                         </v-card-title>
                         <v-card-text>
                             <p>
@@ -67,7 +67,22 @@
                 <v-container fluid>
                     <v-card class="mx-auto" max-width="800" flat>
                         <v-card-title id="lorem-ipsum-2">
-                            <p class="display-4" align="center">Lorem Ipsum 2</p>
+                            <p class="display-3" align="center">Lorem Ipsum 2</p>
+                        </v-card-title>
+                        <v-card-text>
+                            <p>
+                                {{loremIpsum}}
+                            </p>
+                        </v-card-text>
+                    </v-card>
+                </v-container>
+                <!-- END PRIMARY-CARD-->
+                <!-- PRIMARY-CARD HEADLINE -->
+                <v-container fluid>
+                    <v-card class="mx-auto" max-width="800" flat>
+                        <v-card-title id="lorem-ipsum-2">
+                            <p class="display-3" align="center">Was ist das</p>
+                            <p class="display-3 tinker-splash-text" align="center">tinkerfestival</p>
                         </v-card-title>
                         <v-card-text>
                             <p>
@@ -79,14 +94,9 @@
                 <!-- END PRIMARY-CARD-->
                 <!-- CARD-ROW FAQ-->
                 <v-container>
-                    <v-card class="mx-auto" max-width="800" flat>
-                        <v-card-title id="faq">
-                            <p class="display-4" align="center">FAQ</p>
-                        </v-card-title>
-                    </v-card>
                     <v-row>
                         <v-col v-for="n in 3" :key="n" cols="sm">
-                            <v-card class="pa-2" outlined tile flat>
+                            <v-card class="pa-2" tile flat>
                                 <v-card-title>
                                     <h3>Kiste {{n}}</h3>
                                 </v-card-title>
@@ -100,11 +110,14 @@
                         <v-card-title id="faq">
                             <p class="display-2" align="center">Noch Fragen?</p>
                         </v-card-title>
+                        <v-card-text>
+                            Schreib uns an mail@tinkerfestival.de
+                        </v-card-text>
                     </v-card>
                 </v-container>
                 <!-- END CARD-ROW -->
                 <!-- IMAGE-MID -->
-                <v-parallax dark src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg" height="400">
+                <v-parallax dark :src="bgimage" height="400">
                     <v-row align="center" justify="center">
                         <v-col class="mx-auto text-center" cols="6">
                             <v-dialog v-model="signUpDialog" persistent width="600px" height="90%">
@@ -226,11 +239,30 @@
                     easing: 'easeInOutCubic',
                     offset: 100
                 },
+                bgimages: {
+                    xl: "background_image_xl-12.png",
+                    l: "background_image_l-13.png",
+                    s: "background_image_s-14.png",
+                }
 
             },
             computed: {
                 theme() {
                     return (this.$vuetify.theme.dark) ? 'dark' : 'light'
+                },
+                bgimage() {
+                    if (this.$vuetify.breakpoint.xs) {
+                        return './assets/' + this.bgimages['s'];
+                    }
+                    if (this.$vuetify.breakpoint.sm || this.$vuetify.breakpoint.md) {
+                        return './assets/' + this.bgimages['l'];
+                    }
+                    if (this.$vuetify.breakpoint.xl || this.$vuetify.breakpoint.lg) {
+                        return './assets/' + this.bgimages['xl'];
+                    }
+                },
+                cardBgimage(){
+                    
                 }
             },
             watch: {

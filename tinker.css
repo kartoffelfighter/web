@@ -29,3 +29,18 @@ see LICENSE.md for more information */
     /** display-2 
 }
 */
+
+.card-bg-green {
+    background-image: url('./assets/farbflaeche_einzel_gruen.svg');
+    background-position: 0%;
+}
+
+.card-bg-blue {
+    background-image: url('./assets/farbflaeche_einzeln-blau.svg');
+    background-position: 0%;
+}
+
+.card-bg-red {
+    background-image: url('./assets/farbflaeche_einzeln_rot.svg');
+    background-position: 0%;
+}
