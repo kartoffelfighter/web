@@ -38,8 +38,10 @@
                 <v-parallax dark :src="bgimage" height="1000">
                     <v-row align="center" justify="center">
                         <v-col class="text-center" cols="12">
-                            <h1 class="display-4 tinker-splash-text ">{{pageTitle}}</h1>
-                            <h4 class="display-3 tinker-splash-text ">{{subheading}}</h4>
+                            <h1 v-if="this.$vuetify.breakpoint.xs" class="display-2 tinker-splash-text ">{{pageTitle}}</h1>
+                            <h1 v-else class="display-4 tinker-splash-text ">{{pageTitle}}</h1>
+                            <h4 v-if="this.$vuetify.breakpoint.xs" class="display-1 tinker-splash-text ">{{subheading}}</h4>
+                            <h4 v-else class="display-3 tinker-splash-text ">{{subheading}}</h4>
                             <br />
                             <v-btn class="grey lighten-5 display-1" v-on="on" x-large>
                                 <v-icon left>mdi-human-greeting</v-icon>
@@ -262,7 +264,7 @@
                     }
                 },
                 cardBgimage(){
-                    
+
                 }
             },
             watch: {
