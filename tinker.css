@@ -12,9 +12,9 @@ see LICENSE.md for more information */
 .tinker-splash-text {
     font-family: flegrei, sans-serif !important;
     font-style: normal !important;
-    font-weight: 400 !important; 
-
+    font-weight: 400 !important;
 }
+
 
 /*
 .tinker-h1 {
@@ -30,17 +30,66 @@ see LICENSE.md for more information */
 }
 */
 
-.card-bg-green {
+.card-bg::before {
+    content: " ";
+    position: absolute;
+    width: 100%;
+    margin-top: -150px;
+    height: 400px;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: -1;
+}
+
+.card-bg {
+    position: relative;
+    background-color: transparent !important;
+    z-index: 1;
+}
+
+.card-bg-green::before {
     background-image: url('./assets/farbflaeche_einzel_gruen.svg');
-    background-position: 0%;
+    background-repeat: no-repeat;
+    background-position-x: center;
+    background-position-y: top;
 }
 
-.card-bg-blue {
+.card-bg-blue::before {
     background-image: url('./assets/farbflaeche_einzeln-blau.svg');
-    background-position: 0%;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
-.card-bg-red {
+.card-bg-red::before {
     background-image: url('./assets/farbflaeche_einzeln_rot.svg');
-    background-position: 0%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.row-bg-right-top {
+    background-image: url('./assets/Farbflaechen-obenrechts.svg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: right;
+}
+
+.row-bg-right-bottom {
+    background-image: url('./assets/Farbflaechen-untenrechts.svg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: right;
+}
+
+.row-bg-left-top {
+    background-image: url('./assets/Farbflaechen-obenlinks.svg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: left;
+}
+
+.row-bg-left-bottom {
+    background-image: url('./assets/Farbflaechen-untenlinks.svg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: left;
 }
