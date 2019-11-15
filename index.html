@@ -27,8 +27,7 @@
             <v-spacer></v-spacer>
 
             <v-toolbar-items>
-                <v-btn v-for="item in navigation" :key="item.title" text
-                    @click="$vuetify.goTo(item.target, scrollOptions)">{{item.title}}</v-btn>
+                <v-btn v-for="item in navigation" :key="item.title" text @click="$vuetify.goTo(item.target, scrollOptions)">{{item.title}}</v-btn>
             </v-toolbar-items>
 
         </v-app-bar>
@@ -46,10 +45,26 @@
                                 <h4 v-if="this.$vuetify.breakpoint.xs" class="tinker-splash-text ">
                                     {{subheading}}</h4>
                                 <h4 v-else class="display-3 tinker-splash-text ">{{subheading}}</h4>
-                                <v-btn class="grey lighten-5 display-1" x-large>
-                                    <v-icon left>mdi-human-greeting</v-icon>
-                                    Bin dabei!
-                                </v-btn>
+                                <v-dialog v-model="signUpDialog" persistent width="700px" height="90%">
+                                    <template v-slot:activator="{ on }">
+                                        <v-btn class="grey lighten-5 button-register-splash" v-on="on" x-large depressed>
+                                            Anmelden
+                                        </v-btn>
+                                    </template>
+                                    <v-card>
+                                        <v-card-title>
+                                            <v-spacer></v-spacer>
+                                            <v-btn text @click="signUpDialog = false">
+                                                <v-icon>mdi-close</v-icon>
+                                            </v-btn>
+                                        </v-card-title>
+                                        <v-card-text>
+                                            <v-container>
+                                                <iframe style="border:none;" :src="'https://docs.google.com/forms/d/e/' + signUpForm + '/viewform?embedded=true'" width="100%" height="900px">Wird geladen…</iframe>
+                                            </v-container>
+                                        </v-card-text>
+                                    </v-card>
+                                </v-dialog>
                         </v-row>
                     </v-container>
                 </v-parallax>
@@ -62,12 +77,8 @@
                         </v-card-title>
                         <v-card-text>
                             <p>
-                                Komm zum Tüfteln ins Ideenlabor im ZDI Würzburg und konzipiere mit uns an den Modellen
-                                für die Stadt der Zukunft.Wir sind davon überzeugt, dass großartige, innovative Ideen
-                                nicht nur in Forschungslaboren entstehen, sondern auf spielerisch inspirierende
-                                Weise in den Köpfen aller Menschen. Deshalb wollen wir am 30.11. und 01.12. mit so
-                                unterschiedlichen Menschen wie möglich die Köpfe zusammen stecken und Ideen sammeln,
-                                entwerfen, gestalten, tüftlen und Prototypen bauen.
+                                Komm zum Tüfteln ins Ideenlabor im ZDI Würzburg und konzipiere mit uns an den Modellen für die Stadt der Zukunft.Wir sind davon überzeugt, dass großartige, innovative Ideen nicht nur in Forschungslaboren entstehen, sondern auf spielerisch inspirierende
+                                Weise in den Köpfen aller Menschen. Deshalb wollen wir am 30.11. und 01.12. mit so unterschiedlichen Menschen wie möglich die Köpfe zusammen stecken und Ideen sammeln, entwerfen, gestalten, tüftlen und Prototypen bauen.
                             </p>
                         </v-card-text>
                     </v-card>
@@ -81,12 +92,8 @@
                         </v-card-title>
                         <v-card-text>
                             <p>
-                                50% der Bevölkerung lebt bereits in Städten, Tendenz steigend. Das fordert uns auf neue
-                                Ideen und Konzepte für die Gestaltung unseres Zusammenleben zu entwerfen.Wird es noch
-                                Autos geben? Bauen wir unser Gemüse bald auf den Dächern der Hochhäuser an? Wie
-                                sieht ein Besuch im Museum in 50 Jahren aus? Wo finden wir neue Plätze für Natur? Egal
-                                ob kleines Gadget oder große Vision. Wenn du bereits eine Idee im Kopf hast oder einfach
-                                nur Lust dich zusammen mit anderen damit zu
+                                50% der Bevölkerung lebt bereits in Städten, Tendenz steigend. Das fordert uns auf neue Ideen und Konzepte für die Gestaltung unseres Zusammenleben zu entwerfen.Wird es noch Autos geben? Bauen wir unser Gemüse bald auf den Dächern der Hochhäuser an? Wie
+                                sieht ein Besuch im Museum in 50 Jahren aus? Wo finden wir neue Plätze für Natur? Egal ob kleines Gadget oder große Vision. Wenn du bereits eine Idee im Kopf hast oder einfach nur Lust dich zusammen mit anderen damit zu
                                 beschäftigen, dann ist das Tinkerfestival für dich!
                             </p>
                         </v-card-text>
@@ -102,15 +109,9 @@
                         </v-card-title>
                         <v-card-text>
                             <p>
-                                Entwickle zusammen mit Begeisterten aus verschiedenen Bereichen Prototypen für deine
-                                Ideen. Über das Wochenende wollen wir uns mit der Stadt der Zukunft beschäftigen, Ideen
-                                austauschen und diese in Gruppen konzipieren und prototypisch umsetzen.Das Ideenlabor
-                                im ZDI (Rottendorfer Str. 71, 97074 Würzburg) ist dafür der perfekte Ort.Los gehts am
-                                Samstag 30.11 ab 10:00 Uhr. Nach dem Kennenlernen und der Gruppenfindung kann es direkt
-                                losgehen. Ihr habt bis Sonntag 14:00 Uhr Zeit
-                                an euren Ideen zu tüfteln und Prototypen zu entwerfen. Dabei könnt ihr euch ganz auf
-                                eure Arbeit konzentrieren, für Essen und Trinken ist gesorgt! Anschließend werden die
-                                Gruppen ihre Projekte präsentieren. Die besten Projekte
+                                Entwickle zusammen mit Begeisterten aus verschiedenen Bereichen Prototypen für deine Ideen. Über das Wochenende wollen wir uns mit der Stadt der Zukunft beschäftigen, Ideen austauschen und diese in Gruppen konzipieren und prototypisch umsetzen.Das Ideenlabor
+                                im ZDI (Rottendorfer Str. 71, 97074 Würzburg) ist dafür der perfekte Ort.Los gehts am Samstag 30.11 ab 10:00 Uhr. Nach dem Kennenlernen und der Gruppenfindung kann es direkt losgehen. Ihr habt bis Sonntag 14:00 Uhr Zeit
+                                an euren Ideen zu tüfteln und Prototypen zu entwerfen. Dabei könnt ihr euch ganz auf eure Arbeit konzentrieren, für Essen und Trinken ist gesorgt! Anschließend werden die Gruppen ihre Projekte präsentieren. Die besten Projekte
                                 werden von einer Jury geehrt.
                             </p>
                         </v-card-text>
@@ -125,8 +126,7 @@
                                 <v-card-title>
                                     <h3>Wie viel kostet das Tinkerfestival?</h3>
                                 </v-card-title>
-                                <v-card-text>Das Tinkerfestival kostet dich keinen Cent! Alle Materialien werden bereit
-                                    gestellt und auch für Essen und Trinken ist gesorgt.</v-card-text>
+                                <v-card-text>Das Tinkerfestival kostet dich keinen Cent! Alle Materialien werden bereit gestellt und auch für Essen und Trinken ist gesorgt.</v-card-text>
                             </v-card>
                         </v-col>
                         <v-col cols="12" sm="12" md="4">
@@ -134,9 +134,7 @@
                                 <v-card-title>
                                     <h3>Für wen ist das Festival?</h3>
                                 </v-card-title>
-                                <v-card-text>Für alle die Lust haben sich mit dem Thema auseinander zu setzen und mit
-                                    anderen an einem Projekt zu arbeiten. Vorwissen im Programmieren, Elektronik oder
-                                    Design ist nicht von nöten. Wir wollen möglichst unterschiedliche
+                                <v-card-text>Für alle die Lust haben sich mit dem Thema auseinander zu setzen und mit anderen an einem Projekt zu arbeiten. Vorwissen im Programmieren, Elektronik oder Design ist nicht von nöten. Wir wollen möglichst unterschiedliche
                                     Menschen zusammen bringen.
                                 </v-card-text>
                             </v-card>
@@ -146,9 +144,7 @@
                                 <v-card-title>
                                     <h3>Was muss ich mitbringen?</h3>
                                 </v-card-title>
-                                <v-card-text>Ein Laptop oder Tablet, wenn du eins besitzt, wird nützlich sein. Wlan,
-                                    Drucker und Büromaterialien stehen ausreichend zur Verfügung. Außerdem stellen wir
-                                    Materialien für Prototypen wie Arduinoboards und einen 3D Drucker.</v-card-text>
+                                <v-card-text>Ein Laptop oder Tablet, wenn du eins besitzt, wird nützlich sein. Wlan, Drucker und Büromaterialien stehen ausreichend zur Verfügung. Außerdem stellen wir Materialien für Prototypen wie Arduinoboards und einen 3D Drucker.</v-card-text>
                             </v-card>
                         </v-col>
                     </v-row>
@@ -167,13 +163,13 @@
                 <!-- IMAGE-MID -->
                 <v-parallax dark :src="bgimage" height="400">
                     <v-container fill-height>
-                        <v-row justify="center">
+                        <v-row justify="center" id="signup">
                             <v-col class="mx-auto text-center" cols="6">
-                                <v-dialog v-model="signUpDialog" persistent width="600px" height="90%">
+                                <h4 class="subheading tinker-splash-text display-3">Na los, komm schon!</h4>
+                                <v-dialog v-model="signUpDialog" persistent width="700px" height="90%">
                                     <template v-slot:activator="{ on }">
-                                    <v-btn color="success" dark v-on="on" x-large>
-                                        <v-icon left>mdi-human-greeting</v-icon>
-                                        Bin dabei!
+                                    <v-btn class="grey lighten-5 button-register-splash" v-on="on" x-large depressed>
+                                        Anmelden
                                     </v-btn>
                                 </template>
                                     <v-card>
@@ -185,12 +181,11 @@
                                         </v-card-title>
                                         <v-card-text>
                                             <v-container>
-                                                <iframe :src="'https://docs.google.com/forms/d/e/' + signUpForm + '/viewform?embedded=true'" width="100%" height="900px">Wird geladen…</iframe>
+                                                <iframe style="border:none;" :src="'https://docs.google.com/forms/d/e/' + signUpForm + '/viewform?embedded=true'" width="100%" height="900px">Wird geladen…</iframe>
                                             </v-container>
                                         </v-card-text>
                                     </v-card>
                                 </v-dialog>
-                                <h4 class="subheading">Na los, komm schon!</h4>
                             </v-col>
                         </v-row>
                     </v-container>
@@ -198,40 +193,28 @@
                 <!-- END IMAGE-MID -->
                 <!-- IMAGE-ROW -->
                 <v-container>
+                    <div class="mx-auto">
+                        <h4 class="display-2">Unsere Sponsoren</h4>
+                    </div>
                     <v-row>
                         <v-col v-for="n in sponsors" :key="n" cols="sm">
-                            <v-card class="mx-auto" max-width="400">
-                                <v-img class="white--text align-end" height="200px" :src="n.logo">
-                                    <v-card-title>{{n.name}}</v-card-title>
+                            <v-card class="mx-auto" max-width="400" flat :href="n.link">
+                                <v-img class="white--text align-end" :src="n.logo">
                                 </v-img>
-
-                                <v-card-subtitle class="pb-0">Sponsor</v-card-subtitle>
-
-                                <v-card-text class="text--primary">
-                                    <div>{{n.description}}</div>
-                                </v-card-text>
-
-                                <v-card-actions>
-                                    <v-btn color="orange" text :href="n.link">
-                                        Mehr Informationen
-                                    </v-btn>
-                                </v-card-actions>
+                                <v-card-title>
+                                    <v-subheading>{{n.name}}</v-subheading>
+                                </v-card-title>
                             </v-card>
                         </v-col>
                     </v-row>
                 </v-container>
                 <!-- END IMAGE-ROW -->
                 <!-- SUB-TEXT -->
-                <v-container>
+                <v-container fluid>
                     <v-row>
                         <v-col cols="md">
                             <div class="mx-auto">
-                                <p>Zentrierter Text unterhalb der Bilder</p>
-                                <div class="overline font-weight-light">
-                                    Licensed by CC0
-                                    <v-icon>mdi-creative-commons</v-icon>
-                                    {{ new Date().getFullYear() }}
-                                </div>
+
                             </div>
                         </v-col>
                     </v-row>
@@ -414,7 +397,13 @@
                             </v-expansion-panel-content>
                         </v-expansion-panel>
                     </v-expansion-panels>
-
+                </v-container>
+                <v-container>
+                    <div class="overline font-weight-light text-right">
+                        Licensed by CC0
+                        <v-icon>mdi-creative-commons</v-icon>
+                        {{ new Date().getFullYear() }}
+                    </div>
                 </v-container>
             </v-content>
             <v-footer padless>
@@ -455,6 +444,7 @@
                     icon: 'mdi-twitter',
                     link: "https://twitter.de"
                 }],
+                showLoveAt: [],
 
                 navigation: [{
                     title: "FAQ",
@@ -474,19 +464,17 @@
                     logo: "./sponsoren/logo_zdi.png",
                     link: "https://www.zdi-ainfranken.de/zdi/index.html",
                     description: "Sponsor für 3D-Drucke, Domain und Webentwicklung"
-                },
-                {
+                }, {
                     name: "Fakultät Gestaltung FHWS",
                     logo: "./sponsoren/logo_fg_fhws.png",
                     link: "https://fg.fhws.de/",
                     description: "Sponsor für 3D-Drucke, Domain und Webentwicklung"
-                },
-                {
+                }, {
                     name: "prezelpriter",
                     logo: "./sponsoren/logo_fanti.png",
                     link: "https://marcfischer.org",
                     description: "Sponsor für 3D-Drucke, Domain und Webentwicklung"
-                },],
+                }, ],
 
                 loremIpsum: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
                 signUpForm: "1FAIpQLSdHgTX_7k80U9MWgyPkOfmBP9uqVtNlk65u41Y-_ocSntEalQ",

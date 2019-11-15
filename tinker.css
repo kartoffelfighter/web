@@ -66,30 +66,41 @@ see LICENSE.md for more information */
     background-position: center;
 }
 
-.row-bg-right-top {
+.row-bg {
+    position: relative;
+    background-color: transparent !important;
+    z-index: 1;
+}
+
+.row-bg-right-top::before {
     background-image: url('./assets/Farbflaechen-obenrechts.svg');
     background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position: right;
+    background-position-x: right;
+    background-position-y: center;
 }
 
-.row-bg-right-bottom {
+.row-bg-right-bottom::before {
     background-image: url('./assets/Farbflaechen-untenrechts.svg');
     background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position: right;
+    background-position-x: right;
+    background-position-y: center;
 }
 
-.row-bg-left-top {
+.row-bg-left-top::before {
     background-image: url('./assets/Farbflaechen-obenlinks.svg');
     background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position: left;
+    background-position-x: right;
+    background-position-y: center;
 }
 
-.row-bg-left-bottom {
+.row-bg-left-bottom::before {
     background-image: url('./assets/Farbflaechen-untenlinks.svg');
     background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position: left;
+    background-position-x: right;
+    background-position-y: center;
+}
+
+.button-register-splash {
+    font-size: 23pt !important;
+    font-variant: normal !important;
 }
