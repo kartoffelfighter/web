@@ -28,6 +28,7 @@
 
             <v-toolbar-items>
                 <v-btn v-for="item in navigation" :key="item.title" text @click="$vuetify.goTo(item.target, scrollOptions)">{{item.title}}</v-btn>
+                <v-btn icon :href="showLoveAt[0].link"><v-icon>mdi-instagram</v-icon></v-btn>
             </v-toolbar-items>
 
         </v-app-bar>
@@ -437,20 +438,12 @@
                 pageTitle: "tinkerfestival",
                 subheading: "30.11. - 01.12.",
 
-                showLoveAt: [{
-                    name: "Facebook",
-                    icon: 'mdi-facebook',
-                    link: "https://fb.me"
-                }, {
+                showLoveAt: [ {
                     name: "Instagram",
                     icon: 'mdi-instagram',
-                    link: "https://instagr.am"
-                }, {
-                    name: "twitter",
-                    icon: 'mdi-twitter',
-                    link: "https://twitter.de"
-                }],
-                showLoveAt: [],
+                    link: "https://instagram.com/tinkerfestival"
+                }, ],
+                
 
                 navigation: [{
                     title: "FAQ",
@@ -485,6 +478,18 @@
                     name: "Fakultät Physik Universität Würzburg",
                     logo: "./sponsoren/logo_physik.png",
                     link: "https://www.physik.uni-wuerzburg.de/startseite/",
+                    description: "Sponsor für 3D-Drucke, Domain und Webentwicklung"
+                },
+                {
+                    name: "Radius Fahrradkurier",
+                    logo: "./sponsoren/logo_radius.png",
+                    link: "http://www.wuerzburger-fahrradkurier.de/",
+                    description: "Sponsor für 3D-Drucke, Domain und Webentwicklung"
+                },
+                {
+                    name: "Foodsharing",
+                    logo: "./sponsoren/logo_foodsharing.png",
+                    link: "https://foodsharing.de/",
                     description: "Sponsor für 3D-Drucke, Domain und Webentwicklung"
                 },],
 
