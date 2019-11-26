@@ -28,6 +28,7 @@
 
             <v-toolbar-items>
                 <v-btn v-for="item in navigation" :key="item.title" text @click="$vuetify.goTo(item.target, scrollOptions)">{{item.title}}</v-btn>
+                <v-btn icon :href="showLoveAt[0].link"><v-icon>mdi-instagram</v-icon></v-btn>
             </v-toolbar-items>
 
         </v-app-bar>
@@ -109,9 +110,15 @@
                         </v-card-title>
                         <v-card-text>
                             <p>
-                                Entwickle zusammen mit Begeisterten aus verschiedenen Bereichen Prototypen für deine Ideen. Über das Wochenende wollen wir uns mit der Stadt der Zukunft beschäftigen, Ideen austauschen und diese in Gruppen konzipieren und prototypisch umsetzen.Das Ideenlabor
-                                im ZDI (Rottendorfer Str. 71, 97074 Würzburg) ist dafür der perfekte Ort.Los gehts am Samstag 30.11 ab 10:00 Uhr. Nach dem Kennenlernen und der Gruppenfindung kann es direkt losgehen. Ihr habt bis Sonntag 14:00 Uhr Zeit
-                                an euren Ideen zu tüfteln und Prototypen zu entwerfen. Dabei könnt ihr euch ganz auf eure Arbeit konzentrieren, für Essen und Trinken ist gesorgt! Anschließend werden die Gruppen ihre Projekte präsentieren. Die besten Projekte
+                                Entwickle zusammen mit Begeisterten aus verschiedenen Bereichen Prototypen für deine
+                                Ideen. Über das Wochenende wollen wir uns mit der Stadt der Zukunft beschäftigen, Ideen
+                                austauschen und diese in Gruppen konzipieren und prototypisch umsetzen.Das Ideenlabor
+                                im ZDI (Rottendorfer Str. 71, 97074 Würzburg) ist dafür der perfekte Ort.Los gehts am
+                                Samstag 30.11 ab 10:00 Uhr. Nach dem Kennenlernen und der Gruppenfindung kann es direkt
+                                losgehen. Ihr habt bis Sonntag Nachmittag Zeit
+                                an euren Ideen zu tüfteln und Prototypen zu entwerfen. Dabei könnt ihr euch ganz auf
+                                eure Arbeit konzentrieren, für Essen und Trinken ist gesorgt! Anschließend werden die
+                                Gruppen ihre Projekte präsentieren. Die besten Projekte
                                 werden von einer Jury geehrt.
                             </p>
                         </v-card-text>
@@ -431,20 +438,12 @@
                 pageTitle: "tinkerfestival",
                 subheading: "30.11. - 01.12.",
 
-                showLoveAt: [{
-                    name: "Facebook",
-                    icon: 'mdi-facebook',
-                    link: "https://fb.me"
-                }, {
+                showLoveAt: [ {
                     name: "Instagram",
                     icon: 'mdi-instagram',
-                    link: "https://instagr.am"
-                }, {
-                    name: "twitter",
-                    icon: 'mdi-twitter',
-                    link: "https://twitter.de"
-                }],
-                showLoveAt: [],
+                    link: "https://instagram.com/tinkerfestival"
+                }, ],
+                
 
                 navigation: [{
                     title: "FAQ",
@@ -462,7 +461,7 @@
                 sponsors: [{
                     name: "ZDI Würzburg",
                     logo: "./sponsoren/logo_zdi.png",
-                    link: "https://www.zdi-ainfranken.de/zdi/index.html",
+                    link: "https://www.zdi-mainfranken.de/zdi/index.html",
                     description: "Sponsor für 3D-Drucke, Domain und Webentwicklung"
                 }, {
                     name: "Fakultät Gestaltung FHWS",
@@ -474,7 +473,25 @@
                     logo: "./sponsoren/logo_fanti.png",
                     link: "https://marcfischer.org",
                     description: "Sponsor für 3D-Drucke, Domain und Webentwicklung"
-                }, ],
+                },
+                {
+                    name: "Fakultät Physik Universität Würzburg",
+                    logo: "./sponsoren/logo_physik.png",
+                    link: "https://www.physik.uni-wuerzburg.de/startseite/",
+                    description: "Sponsor für 3D-Drucke, Domain und Webentwicklung"
+                },
+                {
+                    name: "Radius Fahrradkurier",
+                    logo: "./sponsoren/logo_radius.png",
+                    link: "http://www.wuerzburger-fahrradkurier.de/",
+                    description: "Sponsor für 3D-Drucke, Domain und Webentwicklung"
+                },
+                {
+                    name: "Foodsharing",
+                    logo: "./sponsoren/logo_foodsharing.png",
+                    link: "https://foodsharing.de/",
+                    description: "Sponsor für 3D-Drucke, Domain und Webentwicklung"
+                },],
 
                 loremIpsum: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
                 signUpForm: "1FAIpQLSdHgTX_7k80U9MWgyPkOfmBP9uqVtNlk65u41Y-_ocSntEalQ",
