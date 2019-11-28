@@ -19,21 +19,41 @@
 
 <body class="tinker-body">
     <div id="app">
-        <!-- NAVBAR -->
-        <v-app-bar app dense hide-on-scroll elevate-on-scroll>
-
-            <v-toolbar-title>{{pageTitle}}</v-toolbar-title>
-
-            <v-spacer></v-spacer>
-
-            <v-toolbar-items>
-                <v-btn v-for="item in navigation" :key="item.title" text @click="$vuetify.goTo(item.target, scrollOptions)">{{item.title}}</v-btn>
-                <v-btn icon :href="showLoveAt[0].link"><v-icon>mdi-instagram</v-icon></v-btn>
-            </v-toolbar-items>
-
-        </v-app-bar>
-        <!-- END NAVBAR-->
         <v-app id="main">
+            <!-- NAVBAR -->
+            <v-app-bar app dense hide-on-scroll elevate-on-scroll>
+
+                <v-toolbar-title href='#top' id="top" @click="$vuetify.goTo('top', scrollOptions)">{{pageTitle}}</v-toolbar-title>
+
+                <v-spacer></v-spacer>
+
+                <v-toolbar-items class="hidden-md-and-down">
+                    <v-btn v-for="item in navigation" :key="item.title" text @click="$vuetify.goTo(item.target, scrollOptions)">{{item.title}}</v-btn>
+                    <v-btn icon :href="showLoveAt[0].link">
+                        <v-icon>mdi-instagram</v-icon>
+                    </v-btn>
+                </v-toolbar-items>
+
+                <v-menu left bottom class="d-sm-flex d-xs-flex d-none">
+                    <template v-slot:activator="{ on }">
+                        <v-app-bar-nav-icon v-on="on" class="hidden-sm-and-up"></v-app-bar-nav-icon>
+                    </template>
+
+                    <v-list>
+                        <v-list-item v-for="item in navigation" :key="item.title" @click="$vuetify.goTo(item.target, scrollOptions)">
+                            <v-list-item-content>
+                                <v-list-item-title>{{ item.title }}</v-list-item-title>
+                            </v-list-item-content>
+                        </v-list-item>
+                        <v-list-item :href="showLoveAt[0].link">
+                            <v-list-item-content icon>
+                                <v-icon>{{showLoveAt[0].icon}}</v-icon>
+                            </v-list-item-content>
+                        </v-list-item>
+                    </v-list>
+                </v-menu>
+            </v-app-bar>
+            <!-- END NAVBAR-->
             <v-content id="content">
                 <!-- SPLASH IMAGE (PRALLAX EFFECT)-->
                 <v-parallax dark :src="bgimage" :height="splasImageHeight">
@@ -110,15 +130,9 @@
                         </v-card-title>
                         <v-card-text>
                             <p>
-                                Entwickle zusammen mit Begeisterten aus verschiedenen Bereichen Prototypen für deine
-                                Ideen. Über das Wochenende wollen wir uns mit der Stadt der Zukunft beschäftigen, Ideen
-                                austauschen und diese in Gruppen konzipieren und prototypisch umsetzen.Das Ideenlabor
-                                im ZDI (Rottendorfer Str. 71, 97074 Würzburg) ist dafür der perfekte Ort.Los gehts am
-                                Samstag 30.11 ab 10:00 Uhr. Nach dem Kennenlernen und der Gruppenfindung kann es direkt
-                                losgehen. Ihr habt bis Sonntag Nachmittag Zeit
-                                an euren Ideen zu tüfteln und Prototypen zu entwerfen. Dabei könnt ihr euch ganz auf
-                                eure Arbeit konzentrieren, für Essen und Trinken ist gesorgt! Anschließend werden die
-                                Gruppen ihre Projekte präsentieren. Die besten Projekte
+                                Entwickle zusammen mit Begeisterten aus verschiedenen Bereichen Prototypen für deine Ideen. Über das Wochenende wollen wir uns mit der Stadt der Zukunft beschäftigen, Ideen austauschen und diese in Gruppen konzipieren und prototypisch umsetzen.Das Ideenlabor
+                                im ZDI (Rottendorfer Str. 71, 97074 Würzburg) ist dafür der perfekte Ort.Los gehts am Samstag 30.11 ab 10:00 Uhr. Nach dem Kennenlernen und der Gruppenfindung kann es direkt losgehen. Ihr habt bis Sonntag Nachmittag Zeit
+                                an euren Ideen zu tüfteln und Prototypen zu entwerfen. Dabei könnt ihr euch ganz auf eure Arbeit konzentrieren, für Essen und Trinken ist gesorgt! Anschließend werden die Gruppen ihre Projekte präsentieren. Die besten Projekte
                                 werden von einer Jury geehrt.
                             </p>
                         </v-card-text>
@@ -162,7 +176,7 @@
                             <p class="display-2">Noch Fragen?</p>
                         </v-card-title>
                         <v-card-text>
-                            Schreib uns an mail@tinkerfestival.de
+                            Schreib uns an info@tinkerfestival.de
                         </v-card-text>
                     </v-card>
                 </v-container>
@@ -198,22 +212,92 @@
                     </v-container>
                 </v-parallax>
                 <!-- END IMAGE-MID -->
-                <!-- IMAGE-ROW -->
+                <!-- TEAM Pic-->
                 <v-container>
-                    <div class="mx-auto">
-                        <h4 class="display-2">Unsere Sponsoren</h4>
-                    </div>
-                    <v-row>
-                        <v-col v-for="n in sponsors" :key="n" cols="sm">
-                            <v-card class="mx-auto" max-width="400" flat :href="n.link">
-                                <v-img class="white--text align-end" :src="n.logo">
-                                </v-img>
-                                <v-card-title>
-                                    <v-subheading>{{n.name}}</v-subheading>
-                                </v-card-title>
-                            </v-card>
-                        </v-col>
-                    </v-row>
+                    <v-card class="mx-auto" max-width="800" flat>
+                        <v-card-title id="team">
+                            <p class="display-2">Das Tinkerteam</p>
+                        </v-card-title>
+                        <v-card-text>
+                            <v-img src="./assets/team.jpg"></v-img>
+                            <v-row>
+                                <v-col>Michaela Lautenschlager, Katja Volk, Benita Martis, Annika Kreikenbohm</v-col>
+                            </v-row>
+                        </v-card-text>
+                    </v-card>
+                </v-container>
+                <!-- /TEAM Pic-->
+                <!-- JUROREN -->
+                <v-container fluid>
+                    <v-card max-width="800" class="mx-auto" flat>
+                        <v-card-title id="juroren">
+                            <p class="display-2 text-center">Juroren</p>
+                        </v-card-title>
+                    </v-card>
+                </v-container>
+                <v-container fluid>
+                    <v-card class="mx-auto" max-width="1200" flat>
+                        <v-card-text>
+                            <v-row>
+                                <v-col>
+                                    <v-card tile flat class="p-0">
+                                        <v-card-title>
+                                            <h3 class="text-no-wrap">Prof. Erich Schöls</h3>
+                                        </v-card-title>
+                                        <v-card-text>
+                                            Professor für Interaktive Medien FHWS
+                                        </v-card-text>
+                                    </v-card>
+                                </v-col>
+                                <v-col>
+                                    <v-card tile flat class="p-0">
+                                        <v-card-title>
+                                            <h3 class="text-no-wrap">Philipp Stollenmayer</h3>
+                                        </v-card-title>
+                                        <v-card-text>
+                                            App Developer
+                                        </v-card-text>
+                                    </v-card>
+                                </v-col>
+                                <v-col>
+                                    <v-card tile flat class="p-0">
+                                        <v-card-title>
+                                            <h3 class="text-no-wrap">Dr. Christan Andersen</h3>
+                                        </v-card-title>
+                                        <v-card-text>
+                                            Netzwerkmanager ZDI
+                                        </v-card-text>
+                                    </v-card>
+                                </v-col>
+                            </v-row>
+                        </v-card-text>
+                    </v-card>
+                </v-container>
+                <!-- JUROREN-->
+                <!-- IMAGE-ROW -->
+                <v-container fluid>
+                    <v-card max-width="800" class="mx-auto" flat>
+                        <v-card-title id="juroren">
+                            <p class="display-2 text-center">Unsere Sponsoren</p>
+                        </v-card-title>
+                    </v-card>
+                </v-container>
+                <v-container fluid>
+                    <v-card flat dense class="mx-auto">
+                        <v-card-text>
+                            <v-row>
+                                <v-col v-for="n in sponsors" :key="n" cols="sm">
+                                    <v-card class="mx-auto" max-width="400" flat :href="n.link">
+                                        <v-img class="white--text align-end" :src="n.logo">
+                                        </v-img>
+                                        <v-card-title>
+                                            <v-subheading>{{n.name}}</v-subheading>
+                                        </v-card-title>
+                                    </v-card>
+                                </v-col>
+                            </v-row>
+                        </v-card-text>
+                    </v-card>
                 </v-container>
                 <!-- END IMAGE-ROW -->
                 <!-- SUB-TEXT -->
@@ -438,12 +522,12 @@
                 pageTitle: "tinkerfestival",
                 subheading: "30.11. - 01.12.",
 
-                showLoveAt: [ {
+                showLoveAt: [{
                     name: "Instagram",
                     icon: 'mdi-instagram',
                     link: "https://instagram.com/tinkerfestival"
                 }, ],
-                
+
 
                 navigation: [{
                     title: "FAQ",
@@ -469,29 +553,26 @@
                     link: "https://fg.fhws.de/",
                     description: "Sponsor für 3D-Drucke, Domain und Webentwicklung"
                 }, {
-                    name: "prezelpriter",
+                    name: "prezelprinter",
                     logo: "./sponsoren/logo_fanti.png",
                     link: "https://marcfischer.org",
                     description: "Sponsor für 3D-Drucke, Domain und Webentwicklung"
-                },
-                {
+                }, {
                     name: "Fakultät Physik Universität Würzburg",
                     logo: "./sponsoren/logo_physik.png",
                     link: "https://www.physik.uni-wuerzburg.de/startseite/",
                     description: "Sponsor für 3D-Drucke, Domain und Webentwicklung"
-                },
-                {
+                }, {
                     name: "Radius Fahrradkurier",
                     logo: "./sponsoren/logo_radius.png",
                     link: "http://www.wuerzburger-fahrradkurier.de/",
                     description: "Sponsor für 3D-Drucke, Domain und Webentwicklung"
-                },
-                {
+                }, {
                     name: "Foodsharing",
                     logo: "./sponsoren/logo_foodsharing.png",
                     link: "https://foodsharing.de/",
                     description: "Sponsor für 3D-Drucke, Domain und Webentwicklung"
-                },],
+                }, ],
 
                 loremIpsum: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
                 signUpForm: "1FAIpQLSdHgTX_7k80U9MWgyPkOfmBP9uqVtNlk65u41Y-_ocSntEalQ",
