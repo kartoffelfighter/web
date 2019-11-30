@@ -29,8 +29,8 @@
 
                 <v-toolbar-items class="hidden-md-and-down">
                     <v-btn v-for="item in navigation" :key="item.title" text @click="$vuetify.goTo(item.target, scrollOptions)">{{item.title}}</v-btn>
-                    <v-btn icon :href="showLoveAt[0].link">
-                        <v-icon>mdi-instagram</v-icon>
+                    <v-btn icon v-for="item in showLoveAt" :key="item.name" :href="item.link">
+                        <v-icon>{{item.icon}}</v-icon>
                     </v-btn>
                 </v-toolbar-items>
 
@@ -45,10 +45,8 @@
                                 <v-list-item-title>{{ item.title }}</v-list-item-title>
                             </v-list-item-content>
                         </v-list-item>
-                        <v-list-item :href="showLoveAt[0].link">
-                            <v-list-item-content icon>
-                                <v-icon>{{showLoveAt[0].icon}}</v-icon>
-                            </v-list-item-content>
+                        <v-list-item v-for="item in showLoveAt" :key="item.name" :href="item.link">
+                            <v-icon>{{item.icon}}</v-icon>
                         </v-list-item>
                     </v-list>
                 </v-menu>
@@ -241,6 +239,7 @@
                             <v-row>
                                 <v-col>
                                     <v-card tile flat class="p-0">
+                                        <v-img src="./assets/erich.jpg" max-width="250"></v-img>
                                         <v-card-title>
                                             <h3 class="text-no-wrap">Prof. Erich Schöls</h3>
                                         </v-card-title>
@@ -251,6 +250,7 @@
                                 </v-col>
                                 <v-col>
                                     <v-card tile flat class="p-0">
+                                        <v-img src="./assets/philipp.jpg" max-width="250"></v-img>
                                         <v-card-title>
                                             <h3 class="text-no-wrap">Philipp Stollenmayer</h3>
                                         </v-card-title>
@@ -261,6 +261,7 @@
                                 </v-col>
                                 <v-col>
                                     <v-card tile flat class="p-0">
+                                        <v-img src="./assets/christian.jpg" max-width="250"></v-img>
                                         <v-card-title>
                                             <h3 class="text-no-wrap">Dr. Christan Andersen</h3>
                                         </v-card-title>
@@ -287,7 +288,7 @@
                         <v-card-text>
                             <v-row>
                                 <v-col v-for="n in sponsors" :key="n" cols="sm">
-                                    <v-card class="mx-auto" max-width="400" flat :href="n.link">
+                                    <v-card class="mx-auto" max-width="250" flat :href="n.link">
                                         <v-img class="white--text align-end" :src="n.logo">
                                         </v-img>
                                         <v-card-title>
@@ -526,7 +527,11 @@
                     name: "Instagram",
                     icon: 'mdi-instagram',
                     link: "https://instagram.com/tinkerfestival"
-                }, ],
+                }, {
+                    name: "Github",
+                    icon: 'mdi-github-circle',
+                    link: "https://github.com/tinkerfestival"
+                }],
 
 
                 navigation: [{
@@ -572,8 +577,7 @@
                     logo: "./sponsoren/logo_foodsharing.png",
                     link: "https://foodsharing.de/",
                     description: "Sponsor für 3D-Drucke, Domain und Webentwicklung"
-                },
-                {
+                }, {
                     name: "Angestöpselt e.V.",
                     logo: "./sponsoren/angestoepselt_logo.png",
                     link: "https://www.angestoepselt.de/",
